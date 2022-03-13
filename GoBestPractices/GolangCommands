@@ -1,0 +1,33 @@
+Select Default Profile  to make any terminal default
+
+to check Go Path varibale output- type go env in gitbash
+
+// Making build/executable files for windows machine
+
+$ GOOS=windows  GOARCH=amd64  go build -o winapp.exe
+
+LENOVO@Subham MINGW64 /f/goprojects/src/master_go_programming/aaplication_structure
+$ ls
+aaplication_structure.exe*  go.mod  main.go  myapp.exe*  winapp.exe*
+
+// Making build/executable files for linux machine
+
+$ GOOS=linux  GOARCH=amd64  go build -o linuxapp
+
+LENOVO@Subham MINGW64 /f/goprojects/src/master_go_programming/aaplication_structure
+$ ls
+aaplication_structure.exe*  go.mod  linuxapp  main.go  myapp.exe*  winapp.exe*
+
+// Making build/executable files for macbook/apple machine
+
+$ GOOS=darwin  GOARCH=amd64  go build -o macapp
+
+// To format Code
+
+gofmt -w name of file
+
+gofmt -w .   //to formatt all the files in current directory
+
+LENOVO@Subham MINGW64 /f/goprojects/src/master_go_programming/aaplication_structure
+$ ls
+aaplication_structure.exe*  go.mod  linuxapp  macapp  main.go  myapp.exe*  winapp.exe*

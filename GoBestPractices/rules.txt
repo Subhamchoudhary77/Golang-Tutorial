@@ -1,0 +1,191 @@
+GO Best Practices
+
+1. Variable in GO
+i) Naming Convention Rules
+
+. A variable name can only start with a letter or an underscore. It can be followed by any number of letters, numbers or underscores after that
+
+Example:  var name string 
+                or 
+          var _ string 
+
+.Go is case sensitive so uppercase and lowercase letters are treated differently.
+
+.The variable name cannot be any keyword name in Go
+
+The following keywords are reserved and may not be used as identifiers.
+
+break        default      func         interface    select
+case         defer        go           map          struct
+chan         else         goto         package      switch
+const        fallthrough  if           range        type
+continue     for          import       return       var
+
+.There is no limit on the length of the name of the variable, but it is advisable to use an optimum length of 4 – 15 letters only
+
+ii) Multiple Variable Declaration
+
+Rather tthan declaring variables in a seperate way or individually, it is good to go with multiple declaration way which is good for readability
+
+example: // multiple declaration is good for readability
+	var (
+		age       float64
+		firstName string
+		gender    bool
+	)
+
+iii) Though we can use both camelcase and snake case way to declare variable or functions in goland, but the best practice is to use camelCase rule.
+
+// use mixedCase a.k.a camelCase instead of snake_case (variables and  functions)
+var maxValue = 100  // recommended (camelCase)
+var max_value = 100 // not recommended (snake_case)
+
+iv) // use short, concise names especially in shorter scopes(functional level variable or block level variable) 
+// common names for common types:
+var s string   //string
+var i int      //index
+var num int    //number
+var msg string //message
+var v string   //value
+var err error  //error value
+var done bool  //bool, has been done?
+
+// recommended
+func writeToFile() {
+}
+
+// not recommended
+func write_to_file() {
+}
+
+// write acronyms in all caps
+var writeToDB = true // recommended
+var writeToDb = true // not recommended
+
+// an uppercase first letter has special significance to go (it will be exported in other packages)
+
+2. CONSTANTS RULES
+
+	// 1. You cannot change a constant
+	const temp int = 100
+	// temp = 50 //compile-time error
+
+	// 2. You cannot initiate a constant at runtime (constants belong to compile-time)
+	// const power = math.Pow(2, 3) //error, functions calls belong to runtime
+
+	// 3. You cannot use a variable to initialize a constant
+	t := 5
+	// error, variables belong to runtime and you cannot initialize a const to runtime values
+	// const tc = t
+
+	// 4. You can use a function like len() to initialize a const if it has as argument
+	// a constant string literal (not a variable)
+	// a string literal is an untyped constant
+
+	const l1 = len("Hello") //ok
+
+	str := "Hello"
+	// const l2 = len(str) //error, str is a variable and belongs to runtime
+
+3. Handling errors better by avoiding nesting
+
+Example:
+
+err := request()
+
+if err != nil {                            // Not recommended
+    // handling error
+} else{
+    // Normal code
+}
+
+err := request()
+
+if err != nil {                            // Not recommended
+    // handling error
+    return // or continue, etc.
+} 
+
+However, in case your if-statement contains an initiation, like this:
+
+Example:
+
+if x, err := f(); err != nil {
+    // handling error                        //Not recommended
+    return 
+} else {
+   // use x
+}
+
+x, err := f()
+
+if err != nil {
+    // handling error
+    return
+}
+
+// use x
+
+4. Comment Rules
+
+// this is a single line comment    // Best Practices
+
+/*
+ This is a block comment.
+ a := 10
+ fmt.Println(a)                    // Not recommended
+*/
+
+var name = "John Wick" // inline comment
+
+Always give space after using //
+
+Example: // var name string
+
+5. Best Way to import package- rather placing package randomly, there is an organized way
+
+example:
+
+import (
+    // in-built package, like "fmt", "time", etc.
+
+    // thrid-party package, like "github.com/aws/aws-sdk-go/aws", etc.
+
+    // other package, like "github.com/pol-onesource/spm/services/my-folder/internal/repository"
+)
+
+6. Rather than using same literals (like string, int, etc.) multiple times, 
+better way to make it constant, and then use like a varable.
+
+Example: var myRecord map[string]string
+
+            myRecord["workDone"] = "true"
+            myRecord["eatFood"] = "false"
+            myRecord["gymDone"] = "true"
+            myRecord["studyDone"] = "false"
+
+            // Recommended Way: make string literals a constant
+
+            const isTrue = "true"
+            const isFalse = "false"
+
+            myRecord["workDone"] = isTrue
+            myRecord["eatFood"] = isFalse
+            myRecord["gymDone"] = isTrue
+            myRecord["studyDone"] = isFalse
+
+
+7. You cannot declare short hand variables globally, use can use only inside block.
+
+// ERROR -> := is not allowed in package scope (only local scope)
+// version := "3.1"  // incorrect
+
+var version = "3.1"  // correct
+
+8.      distanceFromSun = 149_600_000 * 1000 // distance from the Sun to Earth in m
+		// (it's allowed to use underscores in numbers for a better readability)
+
+9. Slices are cheaper in memory than arrays        
+
+
+
