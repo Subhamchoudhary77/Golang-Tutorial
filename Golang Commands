@@ -10,3 +10,7 @@ To build go program
 go fmt or goimports -l -w .
 
 4. golint ./...
+
+5. go vet ./...      // variable not used or passing wrong number of parameters to method, etc. 
+
+6. golangci-lint run (combination of golint & go vet)
