@@ -5,6 +5,8 @@ import "fmt"
 func main() {
 	SayHello()
 }
+
+// SayHello method
 func SayHello() {
 	fmt.Println("Hello package v1.0.0!")
 

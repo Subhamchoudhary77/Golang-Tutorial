@@ -5,3 +5,8 @@ To execute go program
 
 To build go program
 2. go build filname.go  or go build -o hello_world hello.go   //hello_world is the new name that you want
+
+3. To format code
+go fmt or goimports -l -w .
+
+4. golint ./...
