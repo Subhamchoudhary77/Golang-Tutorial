@@ -1,0 +1,7 @@
+
+To execute go program
+1. go run filname.go
+
+
+To build go program
+2. go build filname.go  or go build -o hello_world hello.go   //hello_world is the new name that you want
