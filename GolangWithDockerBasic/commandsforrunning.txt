@@ -1,0 +1,10 @@
+// To Build
+
+docker build -t docker-test .
+
+// docker ls
+
+//To Run
+
+docker run -p 8080:8081 -it docker-test
+
